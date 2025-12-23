@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "date": "2024-12-20",
+        "opponent": "Спарта",
+        "venue": "Дома",
+        "competition": "Финал кубка LFK",
+        "result": "3:0",
+        "status": "completed",
+        "ticket_price": "0",
+        "ticket_status": "Победа!",
+        "description": "Историческая победа в финале кубка LFK!"
+    },
+    {
+        "id": 2,
+        "date": "2024-12-27",
+        "opponent": "Система",
+        "venue": "Дома",
+        "competition": "Премьер-Лига",
+        "result": "",
+        "status": "upcoming",
+        "ticket_price": "150",
+        "ticket_status": "Купить билет",
+        "description": "Зимний матч против лидера лиги"
+    },
+    {
+        "id": 3,
+        "date": "2025-01-15",
+        "opponent": "Lucky",
+        "venue": "В гостях",
+        "competition": "Премьер-Лига",
+        "result": "",
+        "status": "future",
+        "ticket_price": "",
+        "ticket_status": "Скоро в продаже",
+        "description": "Первая игра после зимнего перерыва"
+    },
+    {
+        "id": 4,
+        "date": "2025-01-25",
+        "opponent": "Торпедо",
+        "venue": "Дома",
+        "competition": "Кубок страны",
+        "result": "",
+        "status": "future",
+        "ticket_price": "200",
+        "ticket_status": "Скоро в продаже",
+        "description": "1/4 финала кубка страны"
+    },
+    {
+        "id": 5,
+        "date": "2025-02-05",
+        "opponent": "Динамо",
+        "venue": "В гостях",
+        "competition": "Премьер-Лига",
+        "result": "",
+        "status": "future",
+        "ticket_price": "300",
+        "ticket_status": "Скоро в продаже",
+        "description": "Дерби с принципиальным соперником"
+    }
+]

@@ -1,0 +1,29 @@
+:root {
+    --bs-primary: #000000;
+    --bs-secondary: #6c757d;
+    --bs-dark: #212529;
+    --bs-light: #f8f9fa;
+    --bs-gray-800: #343a40;
+}
+
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-primary:hover {
+    background-color: #333;
+    border-color: #333;
+}
+
+.border-gray-800 {
+    border-color: var(--bs-gray-800) !important;
+}
+
+.text-gray-400 {
+    color: #ced4da !important;
+}
+
+.text-gray-500 {
+    color: #adb5bd !important;
+}

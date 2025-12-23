@@ -1,0 +1,13 @@
+{
+  "name": "nomercity-fc",
+  "version": "1.0.0",
+  "description": "Official website of No MERCY Football Club",
+  "scripts": {
+    "dev": "php -S localhost:8000",
+    "watch": "npx live-server --port=3000",
+    "minify-css": "npx postcss assets/css/style.css --use cssnano -o assets/css/style.min.css",
+    "minify-js": "npx uglify-js assets/js/main.js -o assets/js/main.min.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

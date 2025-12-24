@@ -56,25 +56,37 @@
         </div>
         <div class="row">
             <?php
-            $stmt = $pdo->query("SELECT * FROM news ORDER BY published_at DESC LIMIT 3");
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)):
+            // Используем getDB() вместо $pdo
+            $db = getDB();
+            $stmt = $db->query("SELECT * FROM news WHERE is_published = 1 ORDER BY published_at DESC LIMIT 3");
+            $newsItems = $stmt->fetchAll();
+            
+            if (empty($newsItems)): 
             ?>
-            <div class="col-md-4 mb-4">
-                <div class="card bg-dark border-gray-800 h-100">
-                    <?php if ($row['image_url']): ?>
-                    <img src="<?= htmlspecialchars($row['image_url']) ?>" class="card-img-top" alt="<?= htmlspecialchars($row['title']) ?>" style="height: 200px; object-fit: cover;">
-                    <?php endif; ?>
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold"><?= htmlspecialchars($row['title']) ?></h5>
-                        <p class="card-text text-gray-400"><?= htmlspecialchars($row['excerpt']) ?></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <small class="text-gray-500"><?= date('d.m.Y', strtotime($row['published_at'])) ?></small>
-                            <a href="?page=news&id=<?= $row['id'] ?>" class="btn btn-sm btn-primary">Читать</a>
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle me-2"></i>Новостей пока нет
+                </div>
+            </div>
+            <?php else: ?>
+                <?php foreach ($newsItems as $row): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card bg-dark border-gray-800 h-100">
+                        <?php if ($row['image_url']): ?>
+                        <img src="<?= e($row['image_url']) ?>" class="card-img-top" alt="<?= e($row['title']) ?>" style="height: 200px; object-fit: cover;">
+                        <?php endif; ?>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold"><?= e($row['title']) ?></h5>
+                            <p class="card-text text-gray-400"><?= e($row['excerpt']) ?></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-gray-500"><?= date('d.m.Y', strtotime($row['published_at'])) ?></small>
+                                <a href="?page=news&id=<?= $row['id'] ?>" class="btn btn-sm btn-primary">Читать</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <?php endwhile; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </section>

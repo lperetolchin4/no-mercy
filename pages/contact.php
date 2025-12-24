@@ -1,4 +1,5 @@
 <?php
+$db = getDB();
 $message = '';
 $message_type = '';
 
@@ -17,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (empty($errors)) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO contacts (name, email, subject, message) VALUES (?, ?, ?, ?)");
+            $stmt = $db->prepare("INSERT INTO contacts (name, email, subject, message) VALUES (?, ?, ?, ?)");
             $stmt->execute([$name, $email, $subject, $message_text]);
             
             $message = 'Сообщение успешно отправлено!';
@@ -26,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Очистка полей
             $_POST = [];
         } catch (PDOException $e) {
-            $message = 'Ошибка при отправке: ' . $e->getMessage();
+            $message = 'Ошибка при отправке. Попробуйте позже.';
             $message_type = 'danger';
         }
     } else {
@@ -65,28 +66,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>
                 
                 <form method="POST" action="">
+                    <?= csrfField() ?>
+                    
                     <div class="mb-3">
                         <label for="name" class="form-label">Имя *</label>
                         <input type="text" class="form-control bg-black border-gray-800 text-white" id="name" name="name" 
-                               value="<?= htmlspecialchars($_POST['name'] ?? '') ?>" required>
+                               value="<?= e($_POST['name'] ?? '') ?>" required>
                     </div>
                     
                     <div class="mb-3">
                         <label for="email" class="form-label">Email *</label>
                         <input type="email" class="form-control bg-black border-gray-800 text-white" id="email" name="email"
-                               value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required>
+                               value="<?= e($_POST['email'] ?? '') ?>" required>
                     </div>
                     
                     <div class="mb-3">
                         <label for="subject" class="form-label">Тема *</label>
                         <input type="text" class="form-control bg-black border-gray-800 text-white" id="subject" name="subject"
-                               value="<?= htmlspecialchars($_POST['subject'] ?? '') ?>" required>
+                               value="<?= e($_POST['subject'] ?? '') ?>" required>
                     </div>
                     
                     <div class="mb-4">
                         <label for="message" class="form-label">Сообщение *</label>
                         <textarea class="form-control bg-black border-gray-800 text-white" id="message" name="message" 
-                                  rows="5" required><?= htmlspecialchars($_POST['message'] ?? '') ?></textarea>
+                                  rows="5" required><?= e($_POST['message'] ?? '') ?></textarea>
                     </div>
                     
                     <button type="submit" class="btn btn-primary px-5">Отправить</button>
